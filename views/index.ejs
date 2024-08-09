@@ -1,0 +1,33 @@
+<% layout('layouts/boilerplate') %>
+<div class="container mt-5">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <% workouts.forEach(function(workout) { %>
+    <div class="col">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="card-title">Workout title</div>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
+          <div class="button-container d-flex justify-content-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary">
+                View
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">
+                Edit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% }); %>
+    <div class="card shadow-sm">
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <a class="btn btn-primary" href="/addworkout">ADD WORKOUT</a>
+      </div>
+    </div>
+  </div>
+</div>

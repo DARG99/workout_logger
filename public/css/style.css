@@ -1,0 +1,100 @@
+/* Make sure the body and html take full height */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 100px; /* Adjust height as needed */
+}
+
+/* Flexbox settings to make the container take full height and push footer to the bottom */
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center; 
+}
+
+.month-header {
+  font-weight: bold;
+}
+
+.days-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.days-container > div {
+  margin: 10px;
+}
+
+.dates-container {
+  height: 100px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.month {
+  margin: 25px;
+}
+/* mudar para verde os dias selecionados*/
+.workout-day {
+  background-color: green; /* Highlight color for workout days */
+}
+
+
+/* selecionar para azul os exercicios */
+.list-group-item.selected {
+  background-color: blue; /* Ensure this style is correct and intended */
+  color: white;
+}
+
+
+
+/*modal page*/
+/* Ensure the modal covers the full viewport height */
+.modal-dialog {
+  height: 100%;
+  margin: 0;
+}
+
+.modal-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-body {
+  flex: 1 1 auto; /* Allows the body to take up remaining space */
+  overflow-y: auto; /* Enables scrolling if the content overflows */
+}
+
+.modal-footer {
+  flex-shrink: 0; /* Prevents the footer from shrinking */
+}
+
+
+
+
+  
+
+
+
+
+
+  
