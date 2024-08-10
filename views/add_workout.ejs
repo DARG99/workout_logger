@@ -17,7 +17,10 @@
     </button>
 
     <!-- Container to display selected exercises -->
-    <div id="selectedExercises" class="mt-3"></div>
+    <ul class="list-group mt-3 mb-3" id= "selectedExercises">
+      <li class="list-group-item">An item</li>
+      
+    </ul>
 
     <button type="submit" class="btn btn-primary">Add Workout</button>
   </form>
@@ -40,7 +43,7 @@
         <input type="text" id="myInput" onkeyup="search()" placeholder="Search for exercises.." class="form-control mb-3" >
         <ul id="exerciseList" class="list-group">
           <% exercises.forEach(function(exercise) { %>
-          <li class="list-group-item" exercise-id="<%= exercise.exercise_id %>" data-category="<%= exercise.muscle_group %>">
+          <li class="list-group-item exercise-item" exercise-id="<%= exercise.exercise_id %>" data-category="<%= exercise.muscle_group %>">
             <%= exercise.exercise_name %>
           </li>
           <% }); %>

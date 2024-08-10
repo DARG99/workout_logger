@@ -89,6 +89,10 @@ body {
 }
 
 
+.counter-button, .counter-link {
+  touch-action: manipulation;
+}
+
 
 
   
