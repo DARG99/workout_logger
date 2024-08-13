@@ -1,29 +1,24 @@
 <% layout('layouts/boilerplate') %>
 <div class="container mt-5">
-  <form id="workoutForm" action="/add_workout" method="POST">
+  <form id="workoutForm" action="/addworkout" method="POST">
     <div class="form-group">
-      <label for="name">Title Workout</label>
-      <input type="text" class="form-control" id="name" name="name" />
+        <label for="name">Title Workout</label>
+        <input type="text" class="form-control" id="name" name="name" />
     </div>
 
-    <!-- Button to open the modal -->
-    <button
-      type="button"
-      class="btn btn-primary mt-3"
-      data-bs-toggle="modal"
-      data-bs-target="#exerciseSelectionModal"
-    >
-      Select exercises
+    <!-- Modal trigger -->
+    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exerciseSelectionModal">
+        Select exercises
     </button>
 
-    <!-- Container to display selected exercises -->
-    <ul class="list-group mt-3 mb-3" id= "selectedExercises">
-      <li class="list-group-item">An item</li>
-      
+    <!-- Selected Exercises List -->
+    <ul class="list-group mt-3 mb-3" id="selectedExercises">
+        <li class="list-group-item">Exercises</li>
     </ul>
 
     <button type="submit" class="btn btn-primary">Add Workout</button>
-  </form>
+</form>
+
 </div>
 
 <!-- Modal -->
@@ -40,10 +35,20 @@
         <h5 class="modal-title" id="exampleModalLabel">Exercises</h5>
       </div>
       <div class="modal-body">
-        <input type="text" id="myInput" onkeyup="search()" placeholder="Search for exercises.." class="form-control mb-3" >
+        <input
+          type="text"
+          id="myInput"
+          onkeyup="search()"
+          placeholder="Search for exercises.."
+          class="form-control mb-3"
+        />
         <ul id="exerciseList" class="list-group">
           <% exercises.forEach(function(exercise) { %>
-          <li class="list-group-item exercise-item" exercise-id="<%= exercise.exercise_id %>" data-category="<%= exercise.muscle_group %>">
+          <li
+            class="list-group-item exercise-item"
+            exercise-id="<%= exercise.exercise_id %>"
+            data-category="<%= exercise.muscle_group %>"
+          >
             <%= exercise.exercise_name %>
           </li>
           <% }); %>

@@ -69,10 +69,11 @@ app.get("/addworkout", (req, res) => {
     if (results.length === 0) {
       return res.status(401).send("No");
     }
-    console.log("Fetched exercises:", results);
     res.render("add_workout", { exercises: results });
   });
 });
+
+
 
 //POST
 app.post("/login", (req, res) => {
@@ -88,7 +89,6 @@ app.post("/login", (req, res) => {
     }
 
     const user = results[0];
-    console.log(user);
     const passwordMatch = await bcrypt.compare(password, user.password_hash);
 
     if (!passwordMatch) {
@@ -105,6 +105,17 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/register", user.register, (req, res) => {});
+
+app.post("/addworkout", (req, res) => {
+  const exercises = req.body.exercises; // Array of exercises
+
+ console.log(exercises);
+ res.send("Workout send sucesffuly")
+});
+
+
+
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

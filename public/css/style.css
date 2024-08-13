@@ -90,6 +90,7 @@ body {
   touch-action: manipulation;
 }
 
+
 /*navbar*/
 
 .navbar {
@@ -114,6 +115,12 @@ body {
 .nav-icons li a {
   text-decoration: none;
   color: #000;
+  font-size: small;
+}
+
+.nav-icons li i {
+ display: flex;
+ justify-content: center;
 }
 
 
