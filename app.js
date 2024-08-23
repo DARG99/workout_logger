@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 8080;
 
 const { name } = require("ejs");
 const { isAuthenticated } = require("./middleware");
+const { title } = require("process");
 const sessionConfig = {
   secret: "secretkey",
   resave: false,
@@ -64,7 +65,7 @@ app.get("/", isAuthenticated, (req, res) => {
     WHERE 
       users.userID = ?
   `;
-  
+
   db.query(query, [req.session.user.id], (err, results) => {
     if (err) {
       console.error(err);
@@ -75,11 +76,40 @@ app.get("/", isAuthenticated, (req, res) => {
       return res.status(404).send("No workout plans found");
     }
 
-    console.log(results);
-    res.render("index", { workoutsPlans: results });
+    const workoutsPlans = {};
+
+    for (let i = 0; i < results.length; i++) {
+      const plan = results[i];
+
+      if (!workoutsPlans[plan.workoutPlanID]) {
+        workoutsPlans[plan.workoutPlanID] = {
+          workoutPlanID: plan.workoutPlanID,
+          title: plan.title,
+          creationDate: plan.creationDate,
+          exercises: [],
+        };
+      }
+
+      const exercise = {
+        exerciseID: plan.exerciseID,
+        exerciseName: plan.exerciseName,
+        sets: plan.sets,
+      };
+
+      workoutsPlans[plan.workoutPlanID].exercises.push(exercise);
+    }
+    /*tenho de fazer isto devido a aparecer uma key atras do json  '1': {
+    workoutPlanID: 1,
+    title: 'title',
+    creationDate: 2024-08-23T14:05:17.000Z,
+    exercises: [ [Object], [Object], [Object] ]
+  },
+  */
+    const workoutsPlansArray = Object.values(workoutsPlans);
+    console.log(workoutsPlansArray[0].exercises);
+    res.render("index", { workoutsPlans: workoutsPlansArray });
   });
 });
-
 
 app.get("/calendar", isAuthenticated, (req, res) => {
   res.render("calendar");
