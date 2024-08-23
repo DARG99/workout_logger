@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const selectedExercisesList = document.getElementById("selectedExercises");
   const selectedExercisesContainer = document.querySelector(".form-group");
 
+  
+
   exerciseList.addEventListener("click", function (event) {
       const clickedItem = event.target;
 
@@ -50,11 +52,13 @@ document.addEventListener("DOMContentLoaded", function () {
               hiddenInput.name = "exercises[]";
               hiddenInput.value = JSON.stringify({
                   id: exerciseID,
-                  name: exerciseName,
+                  name: exerciseName.trim(),
                   category: exerciseCategory,
                   sets: parseInt(numberSpan.textContent)
               });
               hiddenInput.id = `exercise-${exerciseID}`;
+
+            
               
               // Append to the form-group container or selectedExercisesList
               selectedExercisesList.appendChild(selectedExercise);

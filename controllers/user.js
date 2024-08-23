@@ -5,8 +5,8 @@ module.exports.register = (req, res) => {
   const hashedPassword = bcrypt.hashSync(password, 10);
 
   const sql =
-    "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)";
-  db.query(sql, [username, email, hashedPassword], (err, result) => {
+    "INSERT INTO users (username, passwordHash, email) VALUES (?, ?, ?)";
+  db.query(sql, [username, hashedPassword, email ], (err, result) => {
     if (err) {
       console.error("Error registering user:", err);
       return res.status(500).json({ error: "Error registering user" });

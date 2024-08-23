@@ -46,10 +46,10 @@
           <% exercises.forEach(function(exercise) { %>
           <li
             class="list-group-item exercise-item"
-            exercise-id="<%= exercise.exercise_id %>"
-            data-category="<%= exercise.muscle_group %>"
+            exercise-id="<%= exercise.exerciseID %>"
+            data-category="<%= exercise.muscleGroup %>"
           >
-            <%= exercise.exercise_name %>
+            <%= exercise.exerciseName %>
           </li>
           <% }); %>
         </ul>

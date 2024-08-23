@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root', // Replace with your MySQL username
   password: 'diogo0205', // Replace with your MySQL password
-  database: 'workout_logger'
+  database: 'workout_logger_final'
 });
 
 // Connect to the database
