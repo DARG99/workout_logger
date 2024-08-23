@@ -1,14 +1,13 @@
 <% layout('layouts/boilerplate') %>
 <div class="container mt-5">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-    <% workouts.forEach(function(workout) { %>
+    <% workoutsPlans.forEach(function(workout) { %>
     <div class="col">
       <div class="card shadow-sm">
         <div class="card-body">
-          <div class="card-title">Workout title</div>
+          <div class="card-title"><%= workout.title %></div>
           <p class="card-text">
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.
+            <%= workout.creationDate %>
           </p>
           <div class="button-container d-flex justify-content-center">
             <div class="btn-group">

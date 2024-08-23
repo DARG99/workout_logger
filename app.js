@@ -43,12 +43,44 @@ app.use((req, res, next) => {
 });
 
 //GET
-app.get(
-  "/",
-  /*isAuthenticated*/ (req, res) => {
-    res.render("index", { workouts });
-  }
-);
+app.get("/", isAuthenticated, (req, res) => {
+  const query = `
+    SELECT 
+      workoutplans.workoutPlanID, 
+      workoutplans.title, 
+      workoutplans.creationDate, 
+      workoutplans.userID, 
+      workoutplanexercises.exerciseID, 
+      exercises.exerciseName, 
+      workoutplanexercises.sets
+    FROM 
+      workoutplans
+    JOIN 
+      workoutplanexercises ON workoutplans.workoutPlanID = workoutplanexercises.workoutPlanID
+    JOIN 
+      exercises ON workoutplanexercises.exerciseID = exercises.exerciseID
+    JOIN 
+      users ON workoutplans.userID = users.userID
+    WHERE 
+      users.userID = ?
+  `;
+  
+  db.query(query, [req.session.user.id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error on server");
+    }
+
+    if (results.length === 0) {
+      return res.status(404).send("No workout plans found");
+    }
+
+    console.log(results);
+    res.render("index", { workoutsPlans: results });
+  });
+});
+
+
 app.get("/calendar", isAuthenticated, (req, res) => {
   res.render("calendar");
 });
@@ -121,10 +153,9 @@ app.post("/login", (req, res) => {
       email: user.email,
     };
 
-
     const redirectTo = req.session.returnTo || "/";
     delete req.session.returnTo;
-    res.redirect(redirectTo); // Redirect to home page or any other protected route
+    res.redirect(redirectTo);
   });
 });
 
